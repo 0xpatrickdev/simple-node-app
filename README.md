@@ -28,4 +28,4 @@ Test it out by running `node app.js chalkers` from the root of the cli app.  You
 
 Note that the users with the least amount of data will be returned first, regardless of the order the usernames are entered.  Each request will be handled on a separate thread, so the results will post as they are finished.
 
-This highlights the asynchronus, non-blocking nature of node, while also being a pretty cool (fast) way to make a CLI app.
+This highlights the asynchronus, non-blocking nature of node, while also being a pretty cool (and fast) way to make a CLI app.
