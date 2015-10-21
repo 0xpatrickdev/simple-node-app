@@ -14,13 +14,14 @@ function printError(error) {
 
 function get(username) {
 	//Connect ot the API URL (http://teamtreehouse.com/{{username}}.json)
-	var request = http.get("http://teamtreehouse.com/chalkers.json", function(response){
+	var url = "http://teamtreehouse.com/" + username + ".json";
+	console.log("username:", username);
+	var request = http.get(url, function (response) {
 		var body = ""; //adding to this object
-		//Read the data
-		response.on('data', function(chunk) {
+		response.on('data', function (chunk) {
 			body += chunk; //concatenates
 		});
-		response.on('end', function(){
+		response.on('end', function () {
 			if(response.statusCode === 200) {
 				try {
 					//Parse the data
@@ -28,7 +29,7 @@ function get(username) {
 					//Print the data
 					printMessage(username, profile.badges.length, profile.points.JavaScript)
 				} catch(error) {
-					//Parse error
+					//Parse the error
 					printError(error);
 				}
 			} else {
@@ -41,7 +42,7 @@ function get(username) {
 	request.on("error", printError);
 }
 
-module.exports.get = get; //assigns method and exports get function
+module.exports.get = get; //assigns 'module.exports.get' to get, and exports it (so we can use it in another place)
 
 //if function were: function getProfile(username) {}
 //module.exports.get = getProfile;
