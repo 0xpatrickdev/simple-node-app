@@ -7,20 +7,20 @@ var util = require("util");
  * @param username
  * @constructor
  */
-function Profile(username) {
+function Weather(city) {
 
     EventEmitter.call(this);
 
     profileEmitter = this;
 
-    var url = "https://teamtreehouse.com/" + username + ".json";
+    var url = "api.openweathermap.org/data/2.5/weather?q=" + city;
     var request = http.get(url, function (response) {
         var body = ""; //adding to this object
 
         if (response.statusCode !== 200) {
             request.abort();
             //Status Code Error
-            profileEmitter.emit("error", new Error("There was an error getting the profile for " + username + ". (" + http.STATUS_CODES[response.statusCode] + ")"});
+            profileEmitter.emit("error", new Error("There was an error getting the weather for " + city + ". (" + http.STATUS_CODES[response.statusCode] + ")"});
         }
 
         //Read the data
@@ -31,6 +31,8 @@ function Profile(username) {
 
         response.on('end', function () {
             if(response.statusCode === 200) {
+                console.log("body", JSON.parse(body));
+                /*
                 try {
                     //Parse the data
                     var profile = JSON.parse(body);
@@ -38,6 +40,7 @@ function Profile(username) {
                 } catch (error) {
                     profileEmitter.emit("error", error);
                 }
+                */
             }
         }).on("error", function(error){
             profileEmitter.emit("error", error);

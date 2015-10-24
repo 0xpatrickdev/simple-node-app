@@ -1,4 +1,4 @@
-var http = require("http");
+var http = require("https");
 
 //Print out message
 function printMessage(username, badgeCount, points) {
@@ -14,8 +14,7 @@ function printError(error) {
 
 function get(username) {
 	//Connect ot the API URL (http://teamtreehouse.com/{{username}}.json)
-	var url = "http://teamtreehouse.com/" + username + ".json";
-	console.log("username:", username);
+	var url = "https://teamtreehouse.com/" + username + ".json";
 	var request = http.get(url, function (response) {
 		var body = ""; //adding to this object
 		response.on('data', function (chunk) {
@@ -34,7 +33,7 @@ function get(username) {
 				}
 			} else {
 				//Status Code Error
-				printError({message: "There was an eror getting a profile for " + username + ". (" + http.STATUS_CODES[response.statusCode] + ")"});
+				printError({message: "There was an error getting a profile for " + username + ". (" + http.STATUS_CODES[response.statusCode] + ")"});
 			}
 		});
 	});

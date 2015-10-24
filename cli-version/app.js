@@ -14,10 +14,10 @@
 	users.forEach(profile.get);
 
 */
-var profile = require("./profile");
+var weather = require("./weather");
 	//"./profile.js" will also work, the .js extension is not required
 	// "./"" is required, because we need to name the directory
 
-var users = process.argv.slice(2); //chalkers and dustin24 were the 3rd and 4th arguments (starts on 0 so slice @ 2)
+var city = process.argv.slice(2); //chalkers and dustin24 were the 3rd and 4th arguments (starts on 0 so slice @ 2)
 	//process.argv: this is an array containing the command line arguments. 
-users.forEach(profile.get);
+weather.get(city);
